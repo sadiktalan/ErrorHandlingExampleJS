@@ -19,3 +19,32 @@ return this . _content ;
  function returned normally or threw an exception.
 
  */
+
+var box = {
+    locked : true ,
+    unlock : function () { this . locked = false ; },
+    lock : function () { this . locked = true ; },
+    _content : [] ,
+    get content () {
+        if ( this . locked ) throw new Error (" Locked !") ;
+        return this . _content ;
+    }
+};
+
+function withBoxUnlocked(funcVal) {
+    try {
+        box.unlock();
+        console.log(box.locked);
+        // prints false
+        funcVal();
+    } catch (err) {
+        throw new err;
+    }finally {
+        box.lock();
+    }
+    console.log(box.locked);
+    // prints true
+}
+
+withBoxUnlocked(function () {});
+

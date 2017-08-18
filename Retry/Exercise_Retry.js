@@ -47,3 +47,4 @@ function funcWrapper(num1,num2) {
 }
 
 console.log(funcWrapper(3,12));
+//prints 36
